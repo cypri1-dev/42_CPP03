@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 13:17:32 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/31 16:56:06 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:29:59 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <unistd.h>
+#include <climits>
 
 #define BOLD_ON "\033[1m"
 #define BOLD_OFF "\033[0m"
