@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 13:23:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/31 17:29:56 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:50:04 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,6 @@ void ClapTrap::setEnergyPoint(unsigned int value) {
 	this->_energyPoint = value;
 }
 
-void ClapTrap::actionWrapper(unsigned int value, int func) {
-	switch (func) {
-		case(ATTACK):
-			this->attack("Brakis");
-			break;
-		case(TAKEDAMAGE):
-			this->takeDamage(value);
-			break;
-		case(REPAIRED):
-			this->beRepaired(value);
-			break;
-		default:
-			std::cout << "No action!" << std::endl;
-	}
-}
 
 /*---------------------------------------------------------FUNCTIONS----------------------------------------------------------------------*/
 
@@ -104,7 +89,31 @@ void ClapTrap::run(void) {
 		std::cout << BOLD_ON << "Hit point --> " << this->getHitPoint() << RESET << std::endl;
 		std::cout << BOLD_ON << "Energy point --> " << this->getEnergyPoint() << RESET << std::endl;
 		std::cout << BOLD_ON << "Attack damage --> " << this->getAttackDamage() << RESET << std::endl;
-		sleep(2);
+		// sleep(1);
+	}
+	while(this->getHitPoint() > 0)
+	{
+		unsigned int randomValue = (std::rand() % 10) + 1;
+		std::cout << BOLD_ON << "-----------------------------" << RESET << std::endl;
+		this->takeDamage(randomValue);
+		// sleep(1);
+	}
+}
+
+void ClapTrap::actionWrapper(unsigned int value, int func) {
+	switch (func) {
+		case(ATTACK):
+			this->attack("Brakis");
+			break;
+		case(TAKEDAMAGE):
+			this->takeDamage(value);
+			break;
+		case(REPAIRED):
+			this->beRepaired(value);
+			break;
+		default:
+			std::cout << "No action!" << std::endl;
+			break;
 	}
 }
 
@@ -124,14 +133,13 @@ void ClapTrap::attack(const std::string &target) {
 void ClapTrap::takeDamage(unsigned int amount) {
 	unsigned int oldHitpoint = this->getHitPoint();
 	
+	std::cout << "Claptrap " << BOLD_ON BLUE << this->getName() << RESET << " took " << RED << amount << RESET << " damage" << std::endl;
 	if (amount >= oldHitpoint) {
 		std::cout << BOLD_ON RED << "No more hit points!" << RESET << std::endl;
 		this->setHitPoint(0);
 	}
-	else {
+	else
 		this->setHitPoint(oldHitpoint - amount);
-		std::cout << "Claptrap " << BOLD_ON BLUE << this->getName() << RESET << " took " << RED << amount << RESET << " damage" << std::endl;
-	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
