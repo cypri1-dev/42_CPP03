@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 13:17:32 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/31 17:29:59 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:36:45 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ class ClapTrap {
 		void attack(const std::string &target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-		void run(void);
-		void actionWrapper(unsigned int value, int func);
+		void run(ClapTrap robot);
+		void actionWrapper(unsigned int value, unsigned int func);
 };
+
+std::ostream& operator<<(std::ostream& out, const ClapTrap& clap);
 
 #endif

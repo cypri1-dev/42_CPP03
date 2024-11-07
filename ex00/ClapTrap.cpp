@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 13:23:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/05 13:46:06 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:03:39 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,22 @@ void ClapTrap::setEnergyPoint(unsigned int value) {
 	this->_energyPoint = value;
 }
 
+/*---------------------------------------------------------OVERLOAD OP--------------------------------------------------------------------*/
+
+std::ostream& operator<<(std::ostream& out, const ClapTrap& clap)
+{
+	out << BOLD_ON << "My name is " << clap.getName() << RESET << std::endl
+	<< BOLD_ON << "Hit point --> " << clap.getHitPoint() << RESET << std::endl
+	<< BOLD_ON << "Energy point --> " << clap.getEnergyPoint() << RESET << std::endl
+	<< BOLD_ON << "Attack damage --> " << clap.getAttackDamage() << RESET << std::endl;
+	return (out);
+}
+
 /*---------------------------------------------------------FUNCTIONS----------------------------------------------------------------------*/
 
-void ClapTrap::run(void) {	
-	std::cout << BOLD_ON << "My name is " << this->getName() << RESET << std::endl;
-	std::cout << BOLD_ON << "Hit point --> " << this->getHitPoint() << RESET << std::endl;
-	std::cout << BOLD_ON << "Energy point --> " << this->getEnergyPoint() << RESET << std::endl;
-	std::cout << BOLD_ON << "Attack damage --> " << this->getAttackDamage() << RESET << std::endl;
+void ClapTrap::run(ClapTrap robot) {	
 	
+	std::cout << robot;
 	std::srand(std::time(0));
 	while(this->getEnergyPoint() > 0 && this->getHitPoint() > 0)
 	{
@@ -99,7 +107,7 @@ void ClapTrap::run(void) {
 	}
 }
 
-void ClapTrap::actionWrapper(unsigned int value, int func) {
+void ClapTrap::actionWrapper(unsigned int value, unsigned int func) {
 	switch (func) {
 		case(ATTACK):
 			this->attack("Brakis");
