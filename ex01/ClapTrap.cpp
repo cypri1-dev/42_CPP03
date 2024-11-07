@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:44:15 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/05 14:58:14 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:00:43 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ void ClapTrap::setEnergyPoint(unsigned int value) {
 	this->_energyPoint = value;
 }
 
+/*---------------------------------------------------------OVERLOAD OP--------------------------------------------------------------------*/
+
+std::ostream& operator<<(std::ostream& out, const ClapTrap& clap)
+{
+	out << BOLD_ON << "My name is " << clap.getName() << RESET << std::endl
+	<< BOLD_ON << "Hit point --> " << clap.getHitPoint() << RESET << std::endl
+	<< BOLD_ON << "Energy point --> " << clap.getEnergyPoint() << RESET << std::endl
+	<< BOLD_ON << "Attack damage --> " << clap.getAttackDamage() << RESET << std::endl;
+	return (out);
+}
+
 /*---------------------------------------------------------FUNCTIONS----------------------------------------------------------------------*/
 
 void ClapTrap::attack(const std::string &target) {
@@ -80,14 +91,14 @@ void ClapTrap::attack(const std::string &target) {
 		return;
 	}
 	this->setEnergyPoint(oldEnergyPoint - 1);
-	std::cout << "Claptrap " << BOLD_ON BLUE << this->getName() << RESET << " attacks " << BOLD_ON YELLOW << target << RESET << ", causing " << BOLD_ON RED << this->getAttackDamage() << RESET << " points of damage!" << std::endl;
+	std::cout << BOLD_ON BLUE << this->getName() << RESET << " attacks " << BOLD_ON YELLOW << target << RESET << ", causing " << BOLD_ON RED << this->getAttackDamage() << RESET << " points of damage!" << std::endl;
 	
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
 	unsigned int oldHitpoint = this->getHitPoint();
 	
-	std::cout << "Claptrap " << BOLD_ON BLUE << this->getName() << RESET << " took " << RED << amount << RESET << " damage" << std::endl;
+	std::cout << BOLD_ON BLUE << this->getName() << RESET << " took " << RED << amount << RESET << " damage" << std::endl;
 	if (amount >= oldHitpoint) {
 		std::cout << BOLD_ON RED << "No more hit points!" << RESET << std::endl;
 		this->setHitPoint(0);
@@ -98,7 +109,6 @@ void ClapTrap::takeDamage(unsigned int amount) {
 
 void ClapTrap::beRepaired(unsigned int amount) {
 	unsigned int oldHitPoint = this->getHitPoint();
-	unsigned int maxHitPoint = 10;
 	unsigned int oldEnergyPoint = this->getEnergyPoint();
 	
 	if (this->getEnergyPoint() == 0)
@@ -107,9 +117,23 @@ void ClapTrap::beRepaired(unsigned int amount) {
 		return;
 	}
 	this->setEnergyPoint(oldEnergyPoint - 1);
-	std::cout << "Claptrap " << BOLD_ON BLUE << this->getName() << RESET << " repaired " << RED << amount << RESET << " hit points!" << std::endl;
-	if (oldHitPoint + amount > maxHitPoint)
-		this->setHitPoint(10);
-	else
-		this->setHitPoint(oldHitPoint + amount);
+	std::cout << BOLD_ON BLUE << this->getName() << RESET << " repaired " << RED << amount << RESET << " hit points!" << std::endl;
+	this->setHitPoint(oldHitPoint + amount);
+}
+
+void ClapTrap::actionWrapper(ClapTrap &iRobot, unsigned int value, unsigned int func) {
+	switch (func) {
+		case(ATTACK):
+			iRobot.attack("Brakis");
+			break;
+		case(TAKEDAMAGE):
+			iRobot.takeDamage(value);
+			break;
+		case(REPAIRED):
+			iRobot.beRepaired(value);
+			break;
+		default:
+			std::cout << "No action!" << std::endl;
+			break;
+	}
 }

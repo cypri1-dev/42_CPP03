@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:44:35 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/05 14:55:25 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:42:46 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 #define ATTACK 1
 #define TAKEDAMAGE 2
 #define REPAIRED 3
+#define GUARD 4
 
 class ClapTrap {
 	protected : //used to be in private - now protected for inheritence
@@ -56,8 +57,10 @@ class ClapTrap {
 		void attack(const std::string &target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-		void run(void);
-		void actionWrapper(unsigned int value, int func);
+		void run(ClapTrap robot);
+		void actionWrapper(ClapTrap &iRobot, unsigned int value, unsigned int func);
 };
+
+std::ostream& operator<<(std::ostream& out, const ClapTrap& clap);
 
 #endif

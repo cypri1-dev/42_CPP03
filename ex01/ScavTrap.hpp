@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:51:48 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/05 16:08:58 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:41:40 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ class ScavTrap : public ClapTrap {
 		virtual ~ScavTrap();
 		void attack(std::string const &target);
 		void guardGate(void);
+
+		bool getGuardMode(void)const;
+		void setGuardMode(void);
+
+		void run(ClapTrap &iRobot, ScavTrap &eRobot);
+		void actionWrapperScav(ScavTrap &eRobot, unsigned int value, unsigned int function);
 };
+
+std::ostream& operator<<(std::ostream& out, const ScavTrap& scav);
 
 #endif
