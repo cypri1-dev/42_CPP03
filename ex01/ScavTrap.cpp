@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:51:30 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/07 15:20:47 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:44:52 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*--------------------------------------------------------ORTHODOX CANONICAL FORM---------------------------------------------------------*/
 
 ScavTrap::ScavTrap() : ClapTrap() {
+	this->_name = "dafaultScav";
 	this->_hitPoint = 100;
 	this->_energyPoint = 50;
 	this->_attackDamage = 20;

@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:51:30 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/08 16:39:53 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:11:02 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*--------------------------------------------------------ORTHODOX CANONICAL FORM---------------------------------------------------------*/
 
-ScavTrap::ScavTrap() : ClapTrap() {
+ScavTrap::ScavTrap() {
 	this->_name = "defaultScav";
 	this->_hitPoint = 100;
 	this->_energyPoint = 50;
@@ -86,7 +86,7 @@ void ScavTrap::attack(const std::string &target) {
 		return;
 	}
 	this->setEnergyPoint(oldEnergyPoint - 1);
-	std::cout << "ScavTrap " << BOLD_ON BLUE << this->getName() << RESET << " slays " << BOLD_ON YELLOW << target << RESET << ", causing " << BOLD_ON RED << this->getAttackDamage() << RESET << " points of damage!" << std::endl;
+	std::cout << BOLD_ON BLUE << this->getName() << RESET << " slays " << BOLD_ON YELLOW << target << RESET << ", causing " << BOLD_ON RED << this->getAttackDamage() << RESET << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate(void) {

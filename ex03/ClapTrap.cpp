@@ -6,11 +6,12 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:44:15 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/08 16:50:26 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:52:10 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include <climits>
 
 /*--------------------------------------------------------ORTHODOX CANONICAL FORM---------------------------------------------------------*/
 
@@ -95,27 +96,27 @@ void ClapTrap::attack(const std::string &target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	unsigned int oldHitpoint = this->getHitPoint();
+	unsigned int oldHitPoint = this->getHitPoint();
 	
-	if (amount > INT_MAX)
+	if (amount > INT_MAX || amount + oldHitPoint > INT_MAX)
 	{
 		std::cout << BOLD_ON RED << "Overflow!" << RESET << std::endl;
 		return;
 	}
 	std::cout << BOLD_ON BLUE << this->getName() << RESET << " took " << RED << amount << RESET << " damage" << std::endl;
-	if (amount >= oldHitpoint) {
+	if (amount >= oldHitPoint) {
 		std::cout << BOLD_ON RED << "No more hit points!" << RESET << std::endl;
 		this->setHitPoint(0);
 	}
 	else
-		this->setHitPoint(oldHitpoint - amount);
+		this->setHitPoint(oldHitPoint - amount);
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
 	unsigned int oldHitPoint = this->getHitPoint();
 	unsigned int oldEnergyPoint = this->getEnergyPoint();
 	
-	if (amount > INT_MAX || amount + oldHitPoint > INT_MAX)
+	if (amount > INT_MAX)
 	{
 		std::cout << BOLD_ON RED << "Overflow!" << RESET << std::endl;
 		return;

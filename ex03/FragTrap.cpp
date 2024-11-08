@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:23:40 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/11/08 16:39:23 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:09:38 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 /*--------------------------------------------------------ORTHODOX CANONICAL FORM---------------------------------------------------------*/
 
-FragTrap::FragTrap() : ClapTrap() {
+FragTrap::FragTrap() {
 	std::cout << BOLD_ON GREEN << "Default (FRAG) constructor called!" << RESET << std::endl;
 	this->_name = "defaultFrag";
 	this->_hitPoint = 100;
